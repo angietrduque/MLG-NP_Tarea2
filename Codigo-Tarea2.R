@@ -36,11 +36,25 @@ suppressMessages(library(broom))
 suppressMessages(library(readr))
 
 #----------------------------------------------------------------------------------------#
-
+# Actividad 1
+#----------------------------------------------------------------------------------------#
 # Cargar los datos
-Datos <- read.csv("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2/winequality-red.csv")
-
-Datos <- read.csv("C:/Users/Angie Rodríguez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2/winequality-red.csv", sep = ";")
 
 
+
+
+#----------------------------------------------------------------------------------------#
+# Actividad 2
+#----------------------------------------------------------------------------------------#
+# Cargar los datos
+Datos <- read.csv("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2/winequality-red.csv", sep = ";")
+Datos <- read.csv("C:/Users/Angie Rodr?guez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2/winequality-red.csv", sep = ";")
+
+Datos
+
+# Categrorizar variable pH a pHi
+summary(Datos[,"pH"])
+pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
+head(pHi)
+table(pHi)
 
