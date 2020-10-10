@@ -47,6 +47,10 @@ Datos <- read.table("Datos.txt",header=T,sep = ",")
 Datos
 ```
 
+```{r warning=FALSE, include=T, paged.print=TRUE}
+dim(Datos)
+```
+
 Este conjunto de datos de vino tinto consta de 1599 observaciones y 12 variables, 11 de las cuales son sustancias químicas. Las variables son:
 
 <div style="text-align: justify">
@@ -69,18 +73,14 @@ Este conjunto de datos de vino tinto consta de 1599 observaciones y 12 variables
 
 9. **pH:** Describe qué tan ácido o básico es un vino en una escala de 0 (muy ácido) a 14 (muy básico); la mayoría de los vinos están entre 3-4 en la escala de pH.
 
-10 **Sulfatos:** Aditivo del vino que puede contribuir a los niveles de dióxido de azufre $(SO_{2})$, que actúa como antimicrobiano y antioxidante.
+10. **Sulfatos:** Aditivo del vino que puede contribuir a los niveles de dióxido de azufre $(SO_{2})$, que actúa como antimicrobiano y antioxidante.
 
-11 **Alcohol:** El porcentaje de contenido de alcohol del vino.
+11. **Alcohol:** El porcentaje de contenido de alcohol del vino.
 
 12. **Calidad:** Variable de respuesta (basada en datos sensoriales, puntuación entre 0 y 10).
 
 <div/>
 
-
-```{r warning=FALSE, include=T, paged.print=TRUE}
-dim(Datos)
-```
 
 ## Estadísticas descriptivas
 
@@ -91,12 +91,34 @@ summary(Datos)
 <center>
 ![Distribución de las variables](G1.png "Regresión local"){width=650px}
 
-<center>
-![Relación acidez fija - calidad](G2.png "Regresión local"){width=500px}
+### Observaciones:
 
-<center>
-![Correlación](G4.png "Regresión local"){width=650px}
+* Algunas de las variables tienen distribuciones normales (densidad, acidez fija, pH, acidez volátil).
 
+* Algunas variables están un poco sesgadas hacia el extremo inferior de los valores (cloruros, ácido cítrico, azúcar residual, dióxido de azufre total).
+
+* La variable calidad tiene solo 6 valores discretos.
+
+```{r warning=FALSE, include=F, paged.print=TRUE}
+G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+ 
+  geom_boxplot(aes(quality, fixed.acidity), colour = "#417b5a")+
+  xlab("Calidad")+ylab("Acidez fija")
+```
+
+```{r fig.align="center", fig.height=3, fig.width=8, warning=FALSE, include=T}
+G2
+```
+
+
+```{r fig.align="center", fig.height=5, fig.width=10, warning=FALSE, include=T}
+corrplot(cor(Datos), method = "square")
+```
+
+* La densidad tiene una correlación muy fuerte con la acidez fija.
+
+* Las variables más fuertemente correlacionadas con la calidad son la acidez volátil y el alcohol.
+
+* El alcohol tiene una correlación negativa con la densidad. Esto es evidente por el hecho de que la densidad del agua es mayor que la densidad del alcohol.
 
 ## Variable indicadora: pHi 
 
@@ -111,8 +133,15 @@ table(pHi)
 
 ```
 
-<center>
-![Variable indicadora](G3.png "Regresión local"){width=500px}
+```{r warning=FALSE, include=F, paged.print=TRUE}
+G3 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
+  geom_bar(position="dodge") + ylab("") + xlab(" ") +
+  scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
+```
+
+```{r fig.align="center", fig.height=2, fig.width=5, warning=FALSE, include=T}
+G3
+```
 
 ## Modelo lineal generalizado (GLM)
 

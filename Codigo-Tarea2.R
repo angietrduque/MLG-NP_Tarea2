@@ -53,13 +53,13 @@ setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Cargar los datos
 Datos <- read.table("Datos.txt",header=T,sep = ",")
-Datos
-
+Datos 
+  
 View(Datos)
 dim(Datos)
 names(Datos)
 str(Datos)
-
+describe(Datos)
 # Estadisticas descriptivas
 summary(Datos)
 
@@ -99,12 +99,11 @@ G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+
   geom_boxplot(aes(quality, fixed.acidity), colour = "#417b5a")+
   xlab("Calidad")+ylab("Acidez fija")
 G2
+grid.arrange(G1, G2, ncol= 2)
 
-
-G3 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+ 
-  geom_boxplot(aes(quality, pH), colour = "#417b5a")+
-  xlab("Calidad")+ylab("pH")
-G3
+ggplot(Datos, aes(x=pHi, y=fixed.acidity, fill=as.factor(quality))) + geom_boxplot(show.legend = T) + 
+  labs(color = "quality",fill = " ") + scale_fill_discrete(name = "Calidad:") + 
+  xlab("pHi") + ylab("Acidez fija")
 
 
 # Modelo 
