@@ -38,7 +38,7 @@ suppressMessages(library(readxl))
 
 #----------------------------------------------------------------------------------------#
 # Fijar directorio
-setwd()
+setwd("C:/Users/Angie Rodríguez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2")
 setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Actividad 1
