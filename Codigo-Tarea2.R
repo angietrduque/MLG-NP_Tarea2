@@ -38,7 +38,7 @@ suppressMessages(library(readxl))
 
 #----------------------------------------------------------------------------------------#
 # Fijar directorio
-setwd("C:/Users/Angie Rodríguez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2")
+setwd("C:/Users/Angie Rodr?guez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2")
 setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Actividad 1
@@ -65,17 +65,27 @@ head(pHi)
 table(pHi)
 
 # Estadisticas descriptivas
-ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
+G1 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
   geom_bar(position="dodge") + 
   ylab("") + xlab(" ") +
   scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
+G1
 
-ggplot(Datos, aes(y=Datos$density, x=pHi, fill=pHi)) + geom_boxplot(show.legend = T) + 
-  scale_fill_discrete(name = "Ph:") +
-  xlab("") + ylab("Densidad")
+G2 <- ggplot(Datos, aes(y=Datos$density, x=pHi, fill=pHi)) + geom_boxplot(show.legend = T) + 
+  scale_fill_discrete(name = "Ph:") + xlab("") + ylab("Densidad")
+G2
 
-ggplot(Datos, aes(y=Datos$alcohol, x=Datos$quality, group=Datos$quality)) + geom_boxplot(show.legend = T)
+G3 <- ggplot(Datos, aes(y=Datos$alcohol, x=Datos$quality, group=Datos$quality)) + geom_boxplot(show.legend = T)
+G3
+
+G4 <- ggplot(Datos, aes(y=Datos$fixed.acidity, x=Datos$quality, group=Datos$quality)) + geom_boxplot(show.legend = T)
+G4
+
 
 # Correlacion
 corrplot(cor(Datos), method = "number")
+
+# Modelo 
+Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
+summary(Modelo)
 
