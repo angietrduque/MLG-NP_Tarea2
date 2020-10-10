@@ -122,6 +122,10 @@ corrplot(cor(Datos), method = "square")
 
 ## Variable indicadora: pHi 
 
+Se hace necesario crear una variable indicadora partiendo de los valores presentados por $pH$, esta variable indicadora cuenta con tres niveles los cuales son, bajo, medio, alto.
+
+A partir de la siguiente figura es posible observar como el nivel de $pH$ con mayor frecuencia es aquel que se denomina como "medio" con 1417 observaciones, mientras que los niveles "bajo" y "alto", presentan frecuencias muy bajas, esto es, 134 y 48 respectivamente.
+
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 summary(Datos[,"pH"])
 pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
@@ -145,11 +149,14 @@ G3
 
 ## Modelo lineal generalizado (GLM)
 
+En esta sección, se ajusta un modelo lineal generalizado usando como respuesta la variable "calidad" (quality) y como variables de predicción las variables "acidez fija" (fixed acidity) y "pHi", tal como sigue:
+
 ```{r warning=FALSE, include=T, paged.print=TRUE}
 Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
 summary(Modelo)
 
 ```
+
 
 
 # Conlusiones

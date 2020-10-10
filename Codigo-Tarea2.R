@@ -105,8 +105,11 @@ ggplot(Datos, aes(x=pHi, y=fixed.acidity, fill=as.factor(quality))) + geom_boxpl
   labs(color = "quality",fill = " ") + scale_fill_discrete(name = "Calidad:") + 
   xlab("pHi") + ylab("Acidez fija")
 
+# Modelo sin variable indicadora
+Modelo0 <- glm(Datos$quality ~ Datos$fixed.acidity, data=Datos)
+summary(Modelo0)
 
-# Modelo 
+# Modelo con variable indicadora
 Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
 summary(Modelo)
 
