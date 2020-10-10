@@ -38,4 +38,9 @@ suppressMessages(library(readr))
 #----------------------------------------------------------------------------------------#
 
 # Cargar los datos
-Datos <- read_csv("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2/winequality-red.csv", )
+Datos <- read.csv("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2/winequality-red.csv")
+
+Datos <- read.csv("C:/Users/Angie Rodríguez/Desktop/Semestre 9/2. Modelos Lineales/MLG&NP_Tarea2/winequality-red.csv", sep = ";")
+
+
+
