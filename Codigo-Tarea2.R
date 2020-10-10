@@ -56,6 +56,8 @@ Datos <- read.table("Datos.txt",header=T,sep = ",")
 Datos
 
 View(Datos)
+dim(Datos)
+names(Datos)
 str(Datos)
 
 # Categrorizar variable pH a pHi
@@ -65,25 +67,38 @@ head(pHi)
 table(pHi)
 
 # Estadisticas descriptivas
-G1 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
-  geom_bar(position="dodge") + 
-  ylab("") + xlab(" ") +
-  scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
-G1
+summary(Datos)
 
-G2 <- ggplot(Datos, aes(y=Datos$density, x=pHi, fill=pHi)) + geom_boxplot(show.legend = T) + 
-  scale_fill_discrete(name = "Ph:") + xlab("") + ylab("Densidad")
-G2
+# Analisis univariado
+p1 <- ggplot(Datos) + geom_histogram(aes(alcohol), color="black", fill="#ce2d4f")
+p2 <- ggplot(Datos) + geom_histogram(aes(chlorides), color="black", fill="#ce6d8b")
+p3 <- ggplot(Datos) + geom_histogram(aes(citric.acid), color="black", fill="#cebbc9")
+p4 <- ggplot(Datos) + geom_histogram(aes(density), color="black", fill="#4056f4")
+p5 <- ggplot(Datos) + geom_histogram(aes(fixed.acidity), color="black", fill="#470ff4")
+p6 <- ggplot(Datos) + geom_histogram(aes(free.sulfur.dioxide), color="black", fill="#e54b4b")
+p7 <- ggplot(Datos) + geom_histogram(aes(pH), color="black", fill="#ffa987")
+p8 <- ggplot(Datos) + geom_histogram(aes(quality), color="black", fill="#c8d5b9")
+p9 <- ggplot(Datos) + geom_histogram(aes(residual.sugar), color="black", fill="#4a7c59")
+p10 <- ggplot(Datos) + geom_histogram(aes(sulphates), color="black", fill="#c4b7cb")
+p11 <- ggplot(Datos) + geom_histogram(aes(total.sulfur.dioxide), color="black", fill="#98e2c6")
+p12 <- ggplot(Datos) + geom_histogram(aes(volatile.acidity), color="black", fill="#06bee1")
 
-G3 <- ggplot(Datos, aes(y=Datos$alcohol, x=Datos$quality, group=Datos$quality)) + geom_boxplot(show.legend = T)
-G3
-
-G4 <- ggplot(Datos, aes(y=Datos$fixed.acidity, x=Datos$quality, group=Datos$quality)) + geom_boxplot(show.legend = T)
-G4
-
+grid.arrange(p1, p2, p3, p4, p5, p6,p7, p8, p9, p10, p11, p12, ncol= 3)
 
 # Correlacion
 corrplot(cor(Datos), method = "number")
+
+# Variable indicadora: pHi
+G1 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
+  geom_bar(position="dodge") + ylab("") + xlab(" ") +
+  scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
+G1
+
+# Analisis bivariado: Variable de respuesta calidad y explicativas pHi y Acidez fija
+G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+ 
+  geom_boxplot(aes(quality, fixed.acidity), colour = "#417b5a")+
+  xlab("Calidad")+ylab("Acidez fija")
+G2
 
 # Modelo 
 Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
