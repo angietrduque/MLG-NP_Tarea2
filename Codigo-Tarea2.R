@@ -85,6 +85,7 @@ corrplot(cor(Datos), method = "number")
 # Variable indicadora: pHi
 summary(Datos[,"pH"])
 pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
+pHi <- as.factor(pHi)
 head(pHi)
 table(pHi)
 
@@ -98,6 +99,13 @@ G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+
   geom_boxplot(aes(quality, fixed.acidity), colour = "#417b5a")+
   xlab("Calidad")+ylab("Acidez fija")
 G2
+
+
+G3 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+ 
+  geom_boxplot(aes(quality, pH), colour = "#417b5a")+
+  xlab("Calidad")+ylab("pH")
+G3
+
 
 # Modelo 
 Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)

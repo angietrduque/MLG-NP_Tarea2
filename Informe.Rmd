@@ -1,0 +1,24 @@
+---
+title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
+author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
+date: "Octubre 22 de 2020"
+output: pdf_document
+---
+
+# Actividad 1
+
+## 
+
+# Actividad 2
+
+## Base de datos 
+
+## Estadísticas descriptivas
+
+## Variable indicadora: pHi 
+
+## Modelo lineal generalizado (GLM)
+
+# Conlusiones
+
+# Biblíografia 
