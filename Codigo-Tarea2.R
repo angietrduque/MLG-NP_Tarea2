@@ -60,12 +60,6 @@ dim(Datos)
 names(Datos)
 str(Datos)
 
-# Categrorizar variable pH a pHi
-summary(Datos[,"pH"])
-pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
-head(pHi)
-table(pHi)
-
 # Estadisticas descriptivas
 summary(Datos)
 
@@ -89,6 +83,11 @@ grid.arrange(p1, p2, p3, p4, p5, p6,p7, p8, p9, p10, p11, p12, ncol= 3)
 corrplot(cor(Datos), method = "number")
 
 # Variable indicadora: pHi
+summary(Datos[,"pH"])
+pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
+head(pHi)
+table(pHi)
+
 G1 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
   geom_bar(position="dodge") + ylab("") + xlab(" ") +
   scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
