@@ -38,6 +38,14 @@ suppressMessages(library(readxl))
 
 ## 
 
+Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ recipientes de presión sometidos a un nivel de carga del $70\%$
+
+## Distribución Weibull
+
+Para estudiar este tipo de variable se acostumbra utilizar la distribución de Weibull, cuya función de densidad es:
+
+$$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right] $$
+
 # Actividad 2
 
 ## Base de datos 

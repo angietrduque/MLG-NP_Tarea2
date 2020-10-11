@@ -84,9 +84,16 @@ corrplot(cor(Datos), method = "number")
 
 # Variable indicadora: pHi
 summary(Datos[,"pH"])
-pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
+rango = (max(Datos$pH)-min(Datos$pH))/3
+a = min(Datos$pH); a
+b = a + rango; b
+c = b + rango; c
+d = c + rango; d
+pHi <- vector() 
+pHi[Datos$pH < b] <- "Bajo"
+pHi[Datos$pH >= b & Datos$pH < c] <- "Medio"
+pHi[Datos$pH > c] <- "Alto"
 pHi <- as.factor(pHi)
-head(pHi)
 table(pHi)
 
 G1 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
