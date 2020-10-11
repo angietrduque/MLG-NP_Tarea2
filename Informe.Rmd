@@ -174,6 +174,25 @@ summary(Modelo)
 ```
 
 
+## Modelo sin variable indicadora pHi
+$$Calidad=5.15732+0.05754*Acidezfija $$
+<table> 
+| Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
+|:------------:	|:----------:	|:--------------:	|:-------:	|:------------:	|:-------------:	|
+| Intercepto   	|    5.15732 	|        0.09789 	|  52.684 	|      < 2e-16 	|      ***      	|
+| Acidez fija  	|    0.05754 	|        0.01152 	|   4.996 	|      6.5e-07 	|      ***      	|
+
+## Modelo con variable indicadora pHi
+
+$$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio $$
+<table>
+| Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
+|:------------:	|:----------:	|:--------------:	|:-------:	|:------------:	|:-------------:	|
+| Intercepto   	|    5.03884 	|        0.13061 	|  38.579 	|  < 2e-16 *** 	|      ***      	|
+| Acidez fija  	|    0.07194 	|        0.01365 	|   5.272 	|     1.54e-07 	|      ***      	|
+| pHiBajo      	|   -0.11957 	|        0.12566 	|  -0.952 	|        0.341 	|               	|
+| pHiMedio     	|    0.02348 	|        0.10672 	|   0.220 	|        0.826 	|               	|
+
 
 # Conlusiones
 
