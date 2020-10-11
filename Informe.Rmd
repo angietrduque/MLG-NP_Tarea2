@@ -113,6 +113,7 @@ G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+
   xlab("Calidad")+ylab("Acidez fija")
 ```
 
+
 ```{r fig.align="center", fig.height=3, fig.width=8, warning=FALSE, include=F}
 G2
 ```
@@ -164,8 +165,7 @@ G3
 ```
 
 ## Modelo lineal generalizado (GLM)
-
- Los modelos lineales generalizados (MLG), fueron desarrollados por Nelder - Wedderburn (1972), permiten ampliar la gama de distribuciones de la variable respuesta a todas aquellas que pertenezcan a la familia exponencial de densidades.
+Los modelo lineal generalizado (GLM) es una generalización flexible de la regresión lineal ordinaria que permite variables de respuesta que tienen modelos de distribución de errores distintos de una distribución normal, fueron desarrollados por Nelder - Wedderburn (1972), permiten ampliar la gama de distribuciones de la variable respuesta a todas aquellas que pertenezcan a la familia exponencial de densidades.
 
 Al igual que la regresión lineal múltiple, permite cumplir con dos objetivos, determinar si existe relación lineal entre las $xj$ y $y$ y cuál es su magnitud.
 
