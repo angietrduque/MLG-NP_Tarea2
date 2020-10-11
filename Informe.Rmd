@@ -167,13 +167,15 @@ G3
 
 En esta sección, se ajusta un modelo lineal generalizado usando como respuesta la variable "calidad" (quality) y como variables de predicción las variables "acidez fija" (fixed acidity) y "pHi", tal como sigue:
 
+
+## Modelo sin variable indicadora pHi
+
 ```{r warning=FALSE, include=T, paged.print=TRUE}
 Modelo1 <- glm(Datos$quality ~ Datos$fixed.acidity, data=Datos)
 
 ```
 
 
-## Modelo sin variable indicadora pHi
 $$Calidad=5.15732+0.05754*Acidezfija $$
 <table> 
 | Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
@@ -188,7 +190,7 @@ Modelo2 <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
 ```
 
 
-$$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio $$
+$$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio$$
 <table>
 | Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
 |:------------:	|:----------:	|:--------------:	|:-------:	|:------------:	|:-------------:	|
