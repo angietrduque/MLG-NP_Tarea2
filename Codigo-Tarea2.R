@@ -38,20 +38,19 @@ suppressMessages(library(readxl))
 
 #----------------------------------------------------------------------------------------#
 # Fijar directorio
-setwd("C:/Users/Angie Rodríguez/Documents/GitHub/MLG-NP_Tarea2")
+setwd("C:/Users/Angie Rodr?guez/Documents/GitHub/MLG-NP_Tarea2")
 setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Actividad 1
 #----------------------------------------------------------------------------------------#
 # Cargar los datos
-library(readxl)
 Tiempos <- read_excel("TiemposFalla.xlsx", col_types = c("numeric"))
 View(Tiempos)
 str(Tiempos)
 
 # Cambio en la unidad de tiempo (Horas->Minutos)
 Tiempo_min<-(Tiempos/60)
-
+Tiempo_min
 
 
 #----------------------------------------------------------------------------------------#
