@@ -165,7 +165,11 @@ G3
 
 ## Modelo lineal generalizado (GLM)
 
-En esta sección, se ajusta un modelo lineal generalizado usando como respuesta la variable "calidad" (quality) y como variables de predicción las variables "acidez fija" (fixed acidity) y "pHi", tal como sigue:
+ Los modelos lineales generalizados (MLG), fueron desarrollados por Nelder - Wedderburn (1972), permiten ampliar la gama de distribuciones de la variable respuesta a todas aquellas que pertenezcan a la familia exponencial de densidades.
+
+Al igual que la regresión lineal múltiple, permite cumplir con dos objetivos, determinar si existe relación lineal entre las $xj$ y $y$ y cuál es su magnitud.
+
+En esta sección, se ajustan dos modelos lineales generalizados, en primer lugar un modelo lineal generalizado usando como respuesta la variable "calidad" (quality) y como variables de predicción la variable "acidez fija" (fixed acidity) y en segundo lugar teniendo como variables predictoras las variables "acidez fija" (fixed acidity) y "pHi", tal como sigue:
 
 
 ## Modelo sin variable indicadora pHi
