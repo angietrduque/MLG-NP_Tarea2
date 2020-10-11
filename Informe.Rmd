@@ -113,7 +113,7 @@ G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+
   xlab("Calidad")+ylab("Acidez fija")
 ```
 
-```{r fig.align="center", fig.height=3, fig.width=8, warning=FALSE, include=T}
+```{r fig.align="center", fig.height=3, fig.width=8, warning=FALSE, include=F}
 G2
 ```
 
@@ -136,8 +136,16 @@ A partir de la siguiente figura es posible observar como el nivel de $pH$ con ma
 
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 summary(Datos[,"pH"])
-pHi <- cut(Datos$pH, breaks = c(2.6,3.1,3.6,4.1), labels = c("Bajo", "Medio", "Alto"))
-head(pHi)
+rango = (max(Datos$pH)-min(Datos$pH))/3
+a = min(Datos$pH); a
+b = a + rango; b
+c = b + rango; c
+d = c + rango; d
+pHi <- vector() 
+pHi[Datos$pH < b] <- "Bajo"
+pHi[Datos$pH >= b & Datos$pH < c] <- "Medio"
+pHi[Datos$pH > c] <- "Alto"
+pHi <- as.factor(pHi)
 ```
 
 ```{r warning=FALSE, include=T, paged.print=TRUE}
@@ -148,7 +156,7 @@ table(pHi)
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 G3 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
   geom_bar(position="dodge") + ylab("") + xlab(" ") +
-  scale_fill_discrete(name = "Nivel pH:", labels = c("Bajo", "Medio", "Alto"))
+  scale_fill_discrete(name = "Nivel pH:")
 ```
 
 ```{r fig.align="center", fig.height=2, fig.width=5, warning=FALSE, include=T}
