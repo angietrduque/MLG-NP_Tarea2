@@ -199,6 +199,16 @@ $$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio$$
 | pHiBajo      	|   -0.11957 	|        0.12566 	|  -0.952 	|        0.341 	|               	|
 | pHiMedio     	|    0.02348 	|        0.10672 	|   0.220 	|        0.826 	|               	|
 
+De acuerdo a los resultados obtenidos y teniendo en cuenta que la interpretación de los valores p es similar a la del modelo lineal. Es posible evidenciar que la variable denominada "Acidez fija" es significativa en ambos modelos. Además, se encuentra positivamente relacionada con la variable de respuesta "Calidad", así la puntuación de la calidad del vino aumentaría $0.05754$ y $0.07194$ respectivamente por cada unidad que aumenta la acidez fija.
+
+Finalmente, respecto al criterio de información empleado, esto es, el criterio de información de Akaike $(AIC)$, se tiene que mientras más pequeño sea el AIC, mejor se ajustará el modelo a los datos. De esta manera, el modelo que mejor se ajusta a los datos es el modelo con la variable indicadora pHi. 
+
+<table>
+| Sin pHi 	| Con pHi 	|
+|:-------:	|:-------:	|
+|  3834.5 	|   3833  	|
+
+
 # Conlusiones
 
 # Biblíografia 
