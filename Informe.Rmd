@@ -131,9 +131,25 @@ corrplot(cor(Datos), method = "square")
 
 ## Variable indicadora: pHi 
 
-Se hace necesario crear una variable indicadora partiendo de los valores presentados por $pH$, esta variable indicadora cuenta con tres niveles los cuales son, bajo, medio, alto.
+Se convierte la variable "pH" en una variable indicadora con tres niveles: "alto", "medio" y "bajo", esta nueva variable se denomina: "pHi". Para dicha transformación se realiza el siguiente procedimiento:
 
-A partir de la siguiente figura es posible observar como el nivel de $pH$ con mayor frecuencia es aquel que se denomina como "medio" con 1417 observaciones, mientras que los niveles "bajo" y "alto", presentan frecuencias muy bajas, esto es, 134 y 48 respectivamente.
+$$Rango=\displaystyle\frac{Máx(pH)-Mín(pH)}{3}$$
+$$Rango=\displaystyle\frac{4.01-2.74}{3}=0.4233333$$
+De esta manera, los límites de cada intervalo son:
+
+* $a = mín(pH)=2.74$
+* $b = a + Rango=3.163333$
+* $c = b + Rango=3.586667$
+* $d = c + Rango=4.01$
+
+<table>
+| Nivel 	|      Criterio      	|       Intervalo       	| Conteo 	|
+|:-----:	|:------------------:	|:---------------------:	|:------:	|
+| Bajo  	| pH<b               	| $[2.74;3.163333)$     	|    267 	|
+| Medio 	| pH $\geq$ b & pH<c 	| $[3.163333;3.586667)$ 	|   1269 	|
+| Alto  	| pH $\geq$ c        	| $[3.586667;4.01)$      	|     63 	|
+
+A partir de la siguiente figura es posible observar como el nivel de $pH$ con mayor frecuencia es aquel que se denomina como "medio" con 1269 observaciones, mientras que los niveles "bajo" y "alto", presentan frecuencias muy bajas, esto es, 267 y 63 respectivamente.
 
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 summary(Datos[,"pH"])
@@ -147,11 +163,6 @@ pHi[Datos$pH < b] <- "Bajo"
 pHi[Datos$pH >= b & Datos$pH < c] <- "Medio"
 pHi[Datos$pH > c] <- "Alto"
 pHi <- as.factor(pHi)
-```
-
-```{r warning=FALSE, include=T, paged.print=TRUE}
-table(pHi)
-
 ```
 
 ```{r warning=FALSE, include=F, paged.print=TRUE}
