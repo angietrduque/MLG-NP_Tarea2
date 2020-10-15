@@ -45,12 +45,43 @@ setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Cargar los datos
 Tiempos <- read_excel("TiemposFalla.xlsx", col_types = c("numeric"))
-View(Tiempos)
 str(Tiempos)
 
-# Cambio en la unidad de tiempo (Horas->Minutos)
-Tiempo_min<-(Tiempos/60)
-Tiempo_min
+# Cambio en la unidad de tiempo (Horas -> Minutos)
+Tiempo_dias <- (Tiempos/24)
+Tiempo_dias
+
+#Tamaño de la muestra
+n <- 36
+
+#Selección de la muestra
+set.seed(123)
+muestra <- sample_n(Tiempo_dias, size= n)
+muestra
+
+# Newton-Raphson 
+# Lambda
+lambda = 2
+sumatoria = sum(muestra^lambda)
+
+expresion <- expression(-((lambda*n)/x)+(lambda)*(sumatoria)/(x^3)) # escribimos el polinomio
+derivada <- D(expresion, "x") # Derivada del polinomio
+
+x <- 0  # Cualquier valor diferente de aprox
+aprox <- 368.26 # valor puntoinicial
+
+while ( x != aprox) {
+  
+  x <- aprox # Se le asigna el valor aproximado a x.
+  reemplazoexpresion <- eval(expresion) #Reemplaza el valor de x en "expresión"
+  reemplazoderiv <- eval(derivada) #Reemplaza el valor de x en "derivada"
+  
+#newton
+  aprox <- x - (reemplazoexpresion/reemplazoderiv) #Ecuación método de Newton
+  print(x)
+}
+
+
 
 
 #----------------------------------------------------------------------------------------#

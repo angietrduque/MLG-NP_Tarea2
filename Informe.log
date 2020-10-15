@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  11 OCT 2020 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  14 OCT 2020 20:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,71 +543,72 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 126.
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-44.
+54.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 145.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 155.
 [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<G1.png, id=39, 812.03375pt x 402.50375pt>
+<G1.png, id=36, 812.03375pt x 402.50375pt>
 File: G1.png Graphic file (type png)
 <use G1.png>
-Package pdftex.def Info: G1.png  used on input line 240.
+Package pdftex.def Info: G1.png  used on input line 250.
 (pdftex.def)             Requested size: 489.31802pt x 242.54205pt.
 
-Overfull \hbox (19.563pt too wide) in paragraph at lines 240--241
+Overfull \hbox (19.563pt too wide) in paragraph at lines 250--251
  [][] 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-49.
+59.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-<Informe_files/figure-latex/unnamed-chunk-7-1.pdf, id=41, 390.45876pt x 357.335
+) [2]
+<Informe_files/figure-latex/unnamed-chunk-7-1.pdf, id=56, 390.45876pt x 357.335
 pt>
 File: Informe_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Informe_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Informe_files/figure-latex/unnamed-chunk-7-1.pdf  used
- on input line 265.
+ on input line 275.
 (pdftex.def)             Requested size: 390.47566pt x 357.35048pt.
-[2] [3 <./G1.png> <./Informe_files/figure-latex/unnamed-chunk-7-1.pdf>]
+[3 <./G1.png>]
 
-LaTeX Warning: Command \' invalid in math mode on input line 287.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 287.
+LaTeX Warning: Command \' invalid in math mode on input line 297.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 294.
+LaTeX Warning: Command \' invalid in math mode on input line 297.
 
-<Informe_files/figure-latex/unnamed-chunk-10-1.pdf, id=70, 331.2375pt x 135.506
+
+LaTeX Warning: Command \' invalid in math mode on input line 304.
+
+[4 <./Informe_files/figure-latex/unnamed-chunk-7-1.pdf>]
+<Informe_files/figure-latex/unnamed-chunk-10-1.pdf, id=77, 331.2375pt x 135.506
 26pt>
 File: Informe_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 
 <use Informe_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Informe_files/figure-latex/unnamed-chunk-10-1.pdf  use
-d on input line 326.
+d on input line 336.
 (pdftex.def)             Requested size: 331.24678pt x 135.51004pt.
-[4 <./Informe_files/figure-latex/unnamed-chunk-10-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 429.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 429.
+[5 <./Informe_files/figure-latex/unnamed-chunk-10-1.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 439.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 439.
 (./Informe.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 429.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 429.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 439.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 439.
  ) 
 Here is how much of TeX's memory you used:
- 13691 strings out of 480608
- 201611 string characters out of 5903631
+ 13696 strings out of 480608
+ 201657 string characters out of 5903631
  497042 words of memory out of 5000000
  29253 multiletter control sequences out of 15000+600000
- 580222 words of font info for 84 fonts, out of 8000000 for 9000
+ 580388 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,42p,806b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,42p,806b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
 /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2020/
 texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2020/texmf-dist
@@ -625,10 +626,10 @@ ocal/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texli
 ve/2020/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2020/texmf-dist/fo
 nts/type1/public/lm/lmtt10.pfb>
-Output written on Informe.pdf (5 pages, 317866 bytes).
+Output written on Informe.pdf (6 pages, 320140 bytes).
 PDF statistics:
- 205 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 49 named destinations out of 1000 (max. 500000)
+ 209 PDF objects out of 1000 (max. 8388607)
+ 178 compressed objects within 2 object streams
+ 50 named destinations out of 1000 (max. 500000)
  10360 words of extra memory for PDF output out of 12000 (max. 10000000)
 

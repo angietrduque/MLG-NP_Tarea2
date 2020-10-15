@@ -2,7 +2,10 @@
 title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
 author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
 date: "Octubre 22 de 2020"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 suppressMessages(library(dplyr))
@@ -45,6 +48,11 @@ Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ r
 Para estudiar este tipo de variable se acostumbra utilizar la distribución de Weibull, cuya función de densidad es:
 
 $$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right] $$
+
+Para analizar este problema usaremos el  método de Newton (conocido también como el método de Newton Raphson o el método de Newton Fourier), el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hara uso de la función U de scoring para la Weibul y se asumira $\lambda$ conocido y $U$ será el estimador $\hat\theta$ del parametro de escala $\theta$. 
+
+Los pasos para desarrollar el algoritmo de Newton son los siguientes: 
+  
 
 # Actividad 2
 
