@@ -3,9 +3,9 @@ title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
 author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
 date: "Octubre 22 de 2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 suppressMessages(library(dplyr))
@@ -82,11 +82,18 @@ Nos proponemos encontrar $\theta$ tal que $U=0$
 
 ### El método de Newton-Raphson
 
+$$ \frac{dU}{d\theta}=U’=\displaystyle\sum_{i=1}^{N}\left[ \frac{\lambda}{\theta^{2}}+\frac{(\lambda) (\lambda-1) y^{\lambda}_{i}}{\theta^{\lambda+2}}\right]$$
 
 
-
-
-
+<table>
+| Interacción 	| $\lambda=1$ 	| $\lambda=1.5$ 	| $\lambda=2$ 	| $\lambda=2.5$ 	| $\lambda=3$ 	|
+|:-----------:	|:-----------:	|:-------------:	|:-----------:	|:-------------:	|:-----------:	|
+|      1      	|    368.26   	|     368.26    	|    368.26   	|     368.26    	|    368.26   	|
+|      2      	|   401.618   	|    401.618    	|   401.618   	|    401.618    	|   401.618   	|
+|      3      	|   410.9478  	|    410.9478   	|   410.9478  	|    410.9478   	|   410.9478  	|
+|      4      	|   411.5225  	|    411.5225   	|   411.5225  	|    411.5225   	|   411.5225  	|
+|      5      	|   411.5246  	|    411.5246   	|   411.5246  	|    411.5246   	|   411.5246  	|
+|      6      	|   411.5246  	|    411.5246   	|   411.5246  	|    411.5246   	|   411.5246  	|
 
 
 # Actividad 2
@@ -266,7 +273,6 @@ Finalmente, respecto al criterio de información empleado, esto es, el criterio 
 |:-------:	|:-------:	|
 |  3834.5 	|   3833  	|
 
-
-# Conlusiones
-
 # Biblíografia 
+
+* Dobson, A. J., & Barnett, A. G. (2018). An introduction to generalized linear models. CRC press.
