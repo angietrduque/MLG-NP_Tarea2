@@ -3,9 +3,9 @@ title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
 author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
 date: "Octubre 22 de 2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 suppressMessages(library(dplyr))
@@ -26,7 +26,6 @@ suppressMessages(library(magrittr))
 suppressMessages(library(nlme))
 suppressMessages(library(MASS))
 suppressMessages(library(multilevel))
-suppressMessages(library(plspm))
 suppressMessages(library(reshape))
 suppressMessages(library(homals))
 suppressMessages(library(GGally))
@@ -51,8 +50,44 @@ $$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}
 
 Para analizar este problema usaremos el  método de Newton (conocido también como el método de Newton Raphson o el método de Newton Fourier), el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hara uso de la función U de scoring para la Weibul y se asumira $\lambda$ conocido y $U$ será el estimador $\hat\theta$ del parametro de escala $\theta$. 
 
-Los pasos para desarrollar el algoritmo de Newton son los siguientes: 
+1. Se elige $x_{0}$ en el eje de las $x$, asumiendo que está cerca de la solución de $f(x)=0$ (raíz buscada)
+
+2. Calculamos la ecuación punto pendiente de la recta tangente a la función en $(x_{0},f(x_{0}))$, a saber $y−f(x_{0})=f′(x_{0})(x−x_{0})$ (1)
+
+3. Esta recta debe intersecar al eje de las $x$, en un punto más cercano a la raíz buscada; en el punto $(x_{1},0)$.
+
+4. El punto $(x_{1},0)$ satisface la ecuación (1) y sustituyendo, queda (2):
+  $$0−f(x0)=f′(x0)(x−x0)$$
   
+5. Si $f(x0)=0$, entonces despejando $x_{1}$ en (2) se obtiene:
+
+$$x_{1}=x_{0}−\frac{f(x_{0})}{f′(x_{0})}$$
+
+6. Repetimos el procedimiento anterior para $x_{0}$, pero ahora comenzando con $x_{1}$, en cuyo caso se obtiene $x_{2}=x_{1}−\frac{f(x_{1})}{f′(x_{1})}$. De forma que $x_{2}$ está más cerca de la raíz buscada que $x$.
+
+7. Iterando cada vez con el número obtenido, se construye una secuencia: $x_{0},x_{1},x−2,…,x_{n},…$ de números cada vez más próximos a la raíz, tales que:
+$$x_{n+1}=x_{n}−\frac{f(x_{n})}{f′(x_{n})}$$
+
+Siguiendo este algoritmo y realizando su representación en R se obtienen los siguientes resultados para $\lambda=2$:## Función U de scoring para la Weibull
+
+$$ \frac{dl}{d\theta}=U=\displaystyle\sum_{i=1}^{N}\left[ \frac{-\lambda}{\theta}+\frac{\lambda y^{\lambda}_{i}}{\theta^{\lambda+1}}\right]$$
+Como asumimos que conocemos $\lambda$, la solución de $U=0$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$.
+
+### Función U de scoring para la Weibull con $\lambda=2$
+
+Como en este caso estamos asumiendo que $\lambda=2$, entonces la expresión anterior será aplicable en este caso.
+
+$$U=\frac{2\cdot 36}{\theta}+\frac{2\cdot \displaystyle\sum_{i=1}^{36}y^{2}_{i}}{\theta^{3}}$$
+Nos proponemos encontrar $\theta$ tal que $U=0$
+
+### El método de Newton-Raphson
+
+
+
+
+
+
+
 
 # Actividad 2
 
