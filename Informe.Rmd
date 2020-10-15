@@ -3,9 +3,9 @@ title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
 author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
 date: "Octubre 22 de 2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 suppressMessages(library(dplyr))
