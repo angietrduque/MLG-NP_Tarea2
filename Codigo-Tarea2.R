@@ -62,18 +62,18 @@ vector <- (muestra/24)
 vector
 
 # Algoritmo de Newton-Rapshon
-cuadrados<-c()
+cuadrados <- c()
 for(i in 1:length(vector)){
   cuadrados<-c(cuadrados,vector[i]^lambda)      
   
 }
 sum(cuadrados)
-sumatoria<-sum(cuadrados) #Sumatoria de los yi^lambda
+sumatoria <- sum(cuadrados) #Sumatoria de los yi^lambda
 expresion <- expression ((-lambda*n/x)+lambda*sumatoria/x^(lambda+1)) # escribimos el polinomio
 derivada <- D(expresion, "x") # Derivada del polinomio
 
 x <- 0 # Cualquier valor diferente de aprox
-aprox <- mean(vector) # valor puntoinicial
+aprox <- min(vector) # valor punto inicial
 
 while ( x != aprox) {
   x <- aprox # Se le asigna el valor aproximado a x.
