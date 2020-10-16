@@ -3,9 +3,9 @@ title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
 author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
 date: "Octubre 22 de 2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 suppressMessages(library(dplyr))
@@ -46,48 +46,46 @@ Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ r
 
 Para estudiar este tipo de variable se acostumbra utilizar la distribución de Weibull, cuya función de densidad es:
 
-$$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right] $$
-
-Para analizar este problema usaremos el  método de Newton (conocido también como el método de Newton Raphson o el método de Newton Fourier), el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hara uso de la función U de scoring para la Weibul y se asumira $\lambda$ conocido y $U$ será el estimador $\hat\theta$ del parametro de escala $\theta$. 
-
-1. Se elige $x_{0}$ en el eje de las $x$, asumiendo que está cerca de la solución de $f(x)=0$ (raíz buscada)
-
-2. Calculamos la ecuación punto pendiente de la recta tangente a la función en $(x_{0},f(x_{0}))$, a saber $y−f(x_{0})=f′(x_{0})(x−x_{0})$ (1)
-
-3. Esta recta debe intersecar al eje de las $x$, en un punto más cercano a la raíz buscada; en el punto $(x_{1},0)$.
-
-4. El punto $(x_{1},0)$ satisface la ecuación (1) y sustituyendo, queda (2):
-  $$0−f(x0)=f′(x0)(x−x0)$$
-  
-5. Si $f(x0)=0$, entonces despejando $x_{1}$ en (2) se obtiene:
-
-$$x_{1}=x_{0}−\frac{f(x_{0})}{f′(x_{0})}$$
-
-6. Repetimos el procedimiento anterior para $x_{0}$, pero ahora comenzando con $x_{1}$, en cuyo caso se obtiene $x_{2}=x_{1}−\frac{f(x_{1})}{f′(x_{1})}$. De forma que $x_{2}$ está más cerca de la raíz buscada que $x$.
-
-7. Iterando cada vez con el número obtenido, se construye una secuencia: $x_{0},x_{1},x−2,…,x_{n},…$ de números cada vez más próximos a la raíz, tales que:
-$$x_{n+1}=x_{n}−\frac{f(x_{n})}{f′(x_{n})}$$
-
-Siguiendo este algoritmo y realizando su representación en R se obtienen los siguientes resultados para $\lambda=2$:## Función U de scoring para la Weibull
-
-$$ \frac{dl}{d\theta}=U=\displaystyle\sum_{i=1}^{N}\left[ \frac{-\lambda}{\theta}+\frac{\lambda y^{\lambda}_{i}}{\theta^{\lambda+1}}\right]$$
-Como asumimos que conocemos $\lambda$, la solución de $U=0$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$.
-
-### Función U de scoring para la Weibull con $\lambda=2$
-
-Como en este caso estamos asumiendo que $\lambda=2$, entonces la expresión anterior será aplicable en este caso.
-
-$$U=\frac{2\cdot 36}{\theta}+\frac{2\cdot \displaystyle\sum_{i=1}^{36}y^{2}_{i}}{\theta^{3}}$$
-Nos proponemos encontrar $\theta$ tal que $U=0$
+$$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right]$$
 
 ### El método de Newton-Raphson
 
-$$ \frac{dU}{d\theta}=U’=\displaystyle\sum_{i=1}^{N}\left[ \frac{\lambda}{\theta^{2}}+\frac{(\lambda) (\lambda-1) y^{\lambda}_{i}}{\theta^{\lambda+2}}\right]$$
+Para analizar este problema usaremos el  método de Newton (conocido también como el método de Newton Raphson o el método de Newton Fourier), el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hara uso de la función U de scoring para la Weibul y se asumira $\lambda$ conocido y $U$ será el estimador $\hat{\theta}$ del parametro de escala $\theta$. 
+
+1. Se elige $x_{0}$ en el eje de las $x$, asumiendo que está cerca de la solución de $f(x)=0$ (raíz buscada)
+
+2. Calculamos la ecuación punto pendiente de la recta tangente de la función en $(x_{0},f(x_{0}))$, a saber $y-f(x_{0})=f’(x_{0})(x-x_{0})$ (1).
+
+3. Esta recta debe intersecar al eje de las x, en un punto más cercano a la raíz buscada; en el punto $(x_{1},0)$.
+
+4. El punto $(x_{1},0)$ satisface la ecuación (1) y sustituyendo queda:
+
+$$0-f(x_{0})=f’(x_{0})(x-x_{0}) \hspace{2cm} (2)$$
+
+5. Si $f’(x_{0})\neq0$, entonces despejando $x_{i}$ en (2) se obtiene:
+
+$$x_{1}=x_{0}-\frac{f(x_{0})}{f’(x_{0})}$$
+
+6. Repetimos el procedimiento anterior para $x_{0}$, pero ahora comenzando en $x_{1}$, en cuyo caso se obtiene: 
+
+$$x_{2}=x_{1}-\frac{f(x_{0})}{f’(x_{0})}$$ 
+
+De forma que $x_{2}$ está más cerca de la raíz buscada que $x_{1}$.
+
+7. Iterando cada vez con el número obtenido, se construye una secuencia: $x_{0},x_{1},x_{2},..., x_{n}$ de números cada vez más próximos a la raíz tales que:
+
+$$x_{n+1}=x_{n}-\frac{f(x_{0})}{f’(x_{0})} \hspace{2cm} (3)$$
+
+Como asumimos que conocemos $\lambda$, la solución de $U=0$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$.
+
+Como en este caso estamos asumiendo que $\lambda=2$, entonces la expresión anterior será aplicable en este caso.
 
 
-<table>
+Nos proponemos encontrar $\theta$ tal que $U=0$
+
+
 | Interacción 	| $\lambda=1$ 	| $\lambda=1.5$ 	| $\lambda=2$ 	| $\lambda=2.5$ 	| $\lambda=3$ 	|
-|:-----------:	|:-----------:	|:-------------:	|:-----------:	|:-------------:	|:-----------:	|
+|-----------	|-----------	|-------------	|-----------	|-------------	|----------- |
 |      1      	|    368.26   	|     368.26    	|    368.26   	|     368.26    	|    368.26   	|
 |      2      	|   401.618   	|    401.618    	|   401.618   	|    401.618    	|   401.618   	|
 |      3      	|   410.9478  	|    410.9478   	|   410.9478  	|    410.9478   	|   410.9478  	|
@@ -194,7 +192,7 @@ De esta manera, los límites de cada intervalo son:
 
 <table>
 | Nivel 	|      Criterio      	|       Intervalo       	| Conteo 	|
-|:-----:	|:------------------:	|:---------------------:	|:------:	|
+|-----	|------------------:	|---------------------	|------	|
 | Bajo  	| pH<b               	| $[2.74;3.163333)$     	|    267 	|
 | Medio 	| pH $\geq$ b & pH<c 	| $[3.163333;3.586667)$ 	|   1269 	|
 | Alto  	| pH $\geq$ c        	| $[3.586667;4.01)$      	|     63 	|
@@ -244,7 +242,7 @@ Modelo1 <- glm(Datos$quality ~ Datos$fixed.acidity, data=Datos)
 $$Calidad=5.15732+0.05754*Acidezfija $$
 <table> 
 | Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
-|:------------:	|:----------:	|:--------------:	|:-------:	|:------------:	|:-------------:	|
+|------------	|----------	|--------------	|-------	|------------	|-------------	|
 | Intercepto   	|    5.15732 	|        0.09789 	|  52.684 	|      < 2e-16 	|      ***      	|
 | Acidez fija  	|    0.05754 	|        0.01152 	|   4.996 	|      6.5e-07 	|      ***      	|
 
@@ -257,12 +255,16 @@ Modelo2 <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
 
 $$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio$$
 <table>
-| Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
-|:------------:	|:----------:	|:--------------:	|:-------:	|:------------:	|:-------------:	|
-| Intercepto   	|    5.03884 	|        0.13061 	|  38.579 	|      < 2e-16 	|      ***      	|
-| Acidez fija  	|    0.07194 	|        0.01365 	|   5.272 	|     1.54e-07 	|      ***      	|
-| pHiBajo      	|   -0.11957 	|        0.12566 	|  -0.952 	|        0.341 	|               	|
-| pHiMedio     	|    0.02348 	|        0.10672 	|   0.220 	|        0.826 	|               	|
+|  Coeficientes 	| Estimación 	| Error Estándar 	| Valor - t 	| Pr(>\|t\|) 	| Significancia 	|
+|:-------------:	|:----------:	|:--------------:	|:---------:	|:----------:	|:-------------:	|
+| Intercepto 1  	|   -3.68405 	|        0.43567 	|    -8.456 	|   < 2e-16  	|           *** 	|
+| Intercepto 2  	|   -1.80815 	|        0.32560 	|    -5.553 	|   2.80e-08 	|           *** 	|
+| Intercepto 3  	|    1.27227 	|        0.30934 	|     4.113 	|   3.91e-05 	|           *** 	|
+| Intercepto 4  	|    3.29577 	|        0.31992 	|    10.302 	|    < 2e-16 	|           *** 	|
+| Intercepto 5  	|    5.93415 	|        0.39326 	|    15.090 	|    < 2e-16 	|           *** 	|
+| Acidez fija   	|   -0.18017 	|        0.03220 	|    -5.595 	|   2.21e-08 	|           *** 	|
+| pHiBajo       	|    0.43078 	|        0.29710 	|     1.450 	|      0.147 	|               	|
+| pHiMedio      	|    0.01117 	|        0.25256 	|     0.044 	|      0.965 	|               	|
 
 De acuerdo a los resultados obtenidos y teniendo en cuenta que la interpretación de los valores p es similar a la del modelo lineal. Es posible evidenciar que la variable denominada "Acidez fija" es significativa en ambos modelos. Además, se encuentra positivamente relacionada con la variable de respuesta "Calidad", así la puntuación de la calidad del vino aumentaría $0.05754$ y $0.07194$ respectivamente por cada unidad que aumenta la acidez fija.
 
@@ -270,9 +272,7 @@ Finalmente, respecto al criterio de información empleado, esto es, el criterio 
 
 <table>
 | Sin pHi 	| Con pHi 	|
-|:-------:	|:-------:	|
+|-------	|-------	|
 |  3834.5 	|   3833  	|
 
-# Biblíografia 
 
-* Dobson, A. J., & Barnett, A. G. (2018). An introduction to generalized linear models. CRC press.
