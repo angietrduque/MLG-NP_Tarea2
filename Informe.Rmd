@@ -42,17 +42,26 @@ suppressMessages(library(VGAM))
 
 ## 
 
-Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ recipientes de presión sometidos a un nivel de carga del $70\%$
+Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ recipientes de presión sometidos a un nivel de carga del $70\%$. De esta manera, se considera el problema de los recipientes de presión, cuya duración, se presume, sigue una distribución de Weibull.
 
 ## Distribución Weibull
 
-Para estudiar este tipo de variable se acostumbra utilizar la distribución de Weibull, cuya función de densidad es:
+Para estudiar la variable "Tiempos de falla (Horas)" se procede a utilizar la distribución de Weibull, cuya función de densidad es:
 
 $$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right]$$
+## Transformación
+
+Se realiza el cambio de las unidades de la variable de respuesta, la cual está reportada originalmente en horas. En esta ocasión se decide trabajar con el "Tiempo de falla" en días. 
+
+$$1 día\longrightarrow 24 horas$$
+
+Posteriormente, se lleva a cabo la elección de una muestra al azar de $36$ recipientes y se estima $\theta$ por el método de Newton-Raphson. 
+
+Como asumimos que conocemos $\lambda$, la solución de $U=0$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$. En este caso, se decidió trabajar con 5 valores para lambda, esto es, $1$, $1.5$, $2$, $2.5$ y $3$
 
 ### El método de Newton-Raphson
 
-Para analizar este problema usaremos el  método de Newton (conocido también como el método de Newton Raphson o el método de Newton Fourier), el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hara uso de la función U de scoring para la Weibul y se asumira $\lambda$ conocido y $U$ será el estimador $\hat{\theta}$ del parametro de escala $\theta$. 
+Se propone explorar este problema de estimación usando el método de Newton-Raphson, el cual es un algoritmo basado en la derivada que permite encontrar aproximaciones de los ceros o raíces de una función real derivable. En este caso particular se hará uso de la función U de scoring para la Weibull y se asumirá $\lambda$ conocido y $U$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$. La descripción del método es la siguiente:
 
 1. Se elige $x_{0}$ en el eje de las $x$, asumiendo que está cerca de la solución de $f(x)=0$ (raíz buscada)
 
@@ -77,14 +86,7 @@ De forma que $x_{2}$ está más cerca de la raíz buscada que $x_{1}$.
 7. Iterando cada vez con el número obtenido, se construye una secuencia: $x_{0},x_{1},x_{2},..., x_{n}$ de números cada vez más próximos a la raíz tales que:
 
 $$x_{n+1}=x_{n}-\frac{f(x_{0})}{f’(x_{0})} \hspace{2cm} (3)$$
-
-Como asumimos que conocemos $\lambda$, la solución de $U=0$ será el estimador $\hat{\theta}$ del parámetro de escala $\theta$.
-
-Como en este caso estamos asumiendo que $\lambda=2$, entonces la expresión anterior será aplicable en este caso.
-
-
-Nos proponemos encontrar $\theta$ tal que $U=0$
-
+De acuerdo con los pasos enumerados anteriormente se obtienen los siguientes resultados en los que se usó como valor inicial el promedio de los datos $\bar{y}=388.5787$:
 
 | Interacción | $\lambda=1$ | $\lambda=1.5$ | $\lambda=2$ | $\lambda=2.5$ | $\lambda=3$ |
 | -----------	| -----------	| -------------	| -----------	| -------------	| ----------- |
@@ -95,6 +97,8 @@ Nos proponemos encontrar $\theta$ tal que $U=0$
 |      5      	|             	|    410.7684   	|   429.1133  	|    444.8485   	|   458.7434  	|
 |      6      	|             	|                	|   429.1133  	|    444.8485   	|   458.7434  	|
 
+
+A partir de la tabla anterior, se observa que la primera iteración para los diferentes lambdas corresponde a la media de los tiempos de falla en días, el cual es el valor incial definido en el algoritmo. También es posible evidenciar que en el caso de $\lambda=1$ se obtiene tan solo 1 iteración, mientras que para $\lambda=1.5$ se obtienen 5 iteraciones, y para $\lambda=2$, $2.5$ y $3$ el número de iteraciones es el mismo, esto es, 6. Para cada uno de estos casos el valor estimado del parámetro $\theta$ resulta ser mayor a medida que se incrementa el parámetro de pertubación lambda.
 
 # Actividad 2
 
