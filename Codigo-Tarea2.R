@@ -34,7 +34,7 @@ suppressMessages(library(CCA))
 suppressMessages(library(plotly))
 suppressMessages(library(broom))
 suppressMessages(library(readr))
-suppressMessages(library(readxl))
+
 
 #----------------------------------------------------------------------------------------#
 # Fijar directorio
@@ -45,7 +45,6 @@ setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Cargar los datos
 Tiempos <- read_excel("TiemposFalla.xlsx", col_types = c("numeric"))
-str(Tiempos)
 
 # Cambio en la unidad de tiempo (Horas -> Minutos)
 Tiempo_dias <- (Tiempos/24)
@@ -53,36 +52,38 @@ Tiempo_dias
 
 #Tamaño de la muestra
 n <- 36
+# Lambda
+lambda <- 2
 
 #Selección de la muestra
-set.seed(123)
-muestra <- sample_n(Tiempo_dias, size= n)
-muestra
+set.seed(123456)
+muestra <- sample(Tiempos$TdeFalla, size= n)
+vector <- (muestra/24)
+vector
 
-# Newton-Raphson 
-# Lambda
-lambda = 2
-sumatoria = sum(muestra^lambda)
-
-expresion <- expression(-((lambda*n)/x)+(lambda)*(sumatoria)/(x^3)) # escribimos el polinomio
+# Algoritmo de Newton-Rapshon
+cuadrados<-c()
+for(i in 1:length(vector)){
+  cuadrados<-c(cuadrados,vector[i]^lambda)      
+  
+}
+sum(cuadrados)
+sumatoria<-sum(cuadrados) #Sumatoria de los yi^lambda
+expresion <- expression ((-lambda*n/x)+lambda*sumatoria/x^(lambda+1)) # escribimos el polinomio
 derivada <- D(expresion, "x") # Derivada del polinomio
 
-x <- 0  # Cualquier valor diferente de aprox
-aprox <- 368.26 # valor puntoinicial
+x <- 0 # Cualquier valor diferente de aprox
+aprox <- mean(vector) # valor puntoinicial
 
 while ( x != aprox) {
-  
   x <- aprox # Se le asigna el valor aproximado a x.
   reemplazoexpresion <- eval(expresion) #Reemplaza el valor de x en "expresión"
   reemplazoderiv <- eval(derivada) #Reemplaza el valor de x en "derivada"
   
-#newton
+  #newton
   aprox <- x - (reemplazoexpresion/reemplazoderiv) #Ecuación método de Newton
   print(x)
 }
-
-
-
 
 #----------------------------------------------------------------------------------------#
 # Actividad 2
