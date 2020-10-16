@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  15 OCT 2020 20:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  15 OCT 2020 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -613,21 +613,26 @@ Package pdftex.def Info: Informe_files/figure-latex/unnamed-chunk-10-1.pdf  use
 d on input line 415.
 (pdftex.def)             Requested size: 331.24678pt x 135.51004pt.
 [5 <./Informe_files/figure-latex/unnamed-chunk-10-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 520.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+478.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 519.
 [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 520.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 519.
 (./Informe.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 520.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 520.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 519.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 519.
  ) 
 Here is how much of TeX's memory you used:
- 13701 strings out of 480608
- 201706 string characters out of 5903631
- 495119 words of memory out of 5000000
- 29252 multiletter control sequences out of 15000+600000
- 580388 words of font info for 86 fonts, out of 8000000 for 9000
+ 13719 strings out of 480608
+ 202087 string characters out of 5903631
+ 495909 words of memory out of 5000000
+ 29282 multiletter control sequences out of 15000+600000
+ 580195 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,42p,806b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,42p,806b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
 /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2020/
 texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2020/texmf-dist
@@ -645,10 +650,10 @@ ocal/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texli
 ve/2020/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2020/texmf-dist/fo
 nts/type1/public/lm/lmtt10.pfb>
-Output written on Informe.pdf (6 pages, 325540 bytes).
+Output written on Informe.pdf (6 pages, 325233 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 182 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
- 10352 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 207 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 10344 words of extra memory for PDF output out of 12000 (max. 10000000)
 

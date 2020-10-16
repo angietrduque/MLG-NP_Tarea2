@@ -38,7 +38,7 @@ suppressMessages(library(readxl))
 
 #----------------------------------------------------------------------------------------#
 # Fijar directorio
-setwd("C:/Users/Angie Rodríguez/Documents/GitHub/MLG-NP_Tarea2")
+setwd("C:/Users/Angie Rodr?guez/Documents/GitHub/MLG-NP_Tarea2")
 setwd("/Users/cesar.saavedra/Documents/GitHub/MLG-NP_Tarea2")
 #----------------------------------------------------------------------------------------#
 # Actividad 1
@@ -156,12 +156,10 @@ summary(Modelo0)
 Modelo <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
 summary(Modelo)
 
-install.packages("MASS")
+
 library(MASS)
-install.packages("VGAM")
 library(VGAM)
-fit=vglm(quality ~ fixed.acidity + pHi,
-            data = Datos, family =cumulative(parallel = TRUE))
+fit = vglm(quality ~ fixed.acidity + pHi, data = Datos, family = cumulative(parallel = TRUE))
 summary(fit)
 
 
