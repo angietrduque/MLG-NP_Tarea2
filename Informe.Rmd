@@ -40,16 +40,15 @@ suppressMessages(library(VGAM))
 
 # Actividad 1
 
-## 
-
 Se dispone de los tiempos de vida (tiempos hasta que fallan, en horas) de $49$ recipientes de presión sometidos a un nivel de carga del $70\%$. De esta manera, se considera el problema de los recipientes de presión, cuya duración, se presume, sigue una distribución de Weibull.
 
-## Distribución Weibull
+### Distribución Weibull
 
 Para estudiar la variable "Tiempos de falla (Horas)" se procede a utilizar la distribución de Weibull, cuya función de densidad es:
 
 $$f(y;\lambda,\theta)=\displaystyle\frac{\lambda y^{\lambda-1}}{\theta^{\lambda}}exp \left[-\left(\frac{y}{\theta}\right)^{\lambda}\right]$$
-## Transformación
+
+### Transformación
 
 Se realiza el cambio de las unidades de la variable de respuesta, la cual está reportada originalmente en horas. En esta ocasión se decide trabajar con el "Tiempo de falla" en días. 
 
@@ -102,7 +101,7 @@ A partir de la tabla anterior, se observa que la primera iteración para los dif
 
 # Actividad 2
 
-## Base de datos 
+### Base de datos 
 
 ```{r warning=FALSE, include=F, paged.print=TRUE}
 Datos <- read.table("Datos.txt",header=T,sep = ",")
@@ -144,7 +143,7 @@ Este conjunto de datos de vino tinto consta de 1599 observaciones y 12 variables
 <div/>
 
 
-## Estadísticas descriptivas
+### Estadísticas descriptivas
 
 ```{r warning=FALSE, include=T, paged.print=TRUE}
 summary(Datos)
@@ -173,8 +172,8 @@ G2
 ```
 
 
-```{r fig.align="center", fig.height=5, fig.width=10, warning=FALSE, include=T}
-corrplot(cor(Datos), method = "square")
+```{r fig.align="center", fig.height=4, fig.width=10, warning=FALSE, include=T}
+corrplot(cor(Datos), method="square", type="upper", order="hclust", tl.col="black")
 ```
 
 * La densidad tiene una correlación muy fuerte con la acidez fija.
@@ -183,7 +182,7 @@ corrplot(cor(Datos), method = "square")
 
 * El alcohol tiene una correlación negativa con la densidad. Esto es evidente por el hecho de que la densidad del agua es mayor que la densidad del alcohol.
 
-## Variable indicadora: pHi 
+### Variable indicadora: pHi 
 
 Se convierte la variable "pH" en una variable indicadora con tres niveles: "alto", "medio" y "bajo", esta nueva variable se denomina: "pHi". Para dicha transformación se realiza el siguiente procedimiento:
 
@@ -225,19 +224,23 @@ G3 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
   scale_fill_discrete(name = "Nivel pH:")
 ```
 
-```{r fig.align="center", fig.height=2, fig.width=5, warning=FALSE, include=T}
+```{r fig.align="center", fig.height=2.5, fig.width=7, warning=FALSE, include=T}
 G3
 ```
 
-## Modelo con variable indicadora pHi
+### Modelo con variable indicadora pHi
 
 En esta sección, se procede a generar un modelo logístico con variable de respuesta ordinal, ya que la variable de respuesta "calidad" tiene una jerarquía, esto es, una puntuación entre 0 y 10, donde 0 representa una mala calidad y 10 una calidad de vino excelente.
 
-```{r warning=FALSE, include=T, paged.print=TRUE}
+```{r warning=FALSE, include=T, paged.print=T}
 fit = vglm(quality ~ fixed.acidity + pHi, data = Datos, family = cumulative(parallel = TRUE))
-summary(fit)
-
 ```
+
+
+```{r warning=FALSE, include=F, paged.print=F}
+summary(fit)
+```
+
 
 <table>
 |  Coeficientes 	| Estimación 	| Error Estándar 	| Valor - t 	| Pr(>\|t\|) 	| Significancia 	|
@@ -251,8 +254,12 @@ summary(fit)
 | pHiBajo       	|    0.43078 	|        0.29710 	|     1.450 	|      0.147 	|               	|
 | pHiMedio      	|    0.01117 	|        0.25256 	|     0.044 	|      0.965 	|               	|
 
-## Conclusiones
+### Conclusiones
 
 * Se obtienen $G-1$ interceptos, esto es $6-1=5$. Dado que, la variable de respuesta "Calidad" presenta 6 categorías.
 
 * De acuerdo a los resultados obtenidos y teniendo en cuenta que la interpretación de los valores p es similar a la del modelo lineal. Es posible evidenciar que la variable denominada "Acidez fija" es significativa. Además, se encuentra negativamente relacionada con la variable de respuesta "Calidad", así la puntuación de la calidad del vino disminuiría $0.18017$ por cada unidad que aumenta la acidez fija.
+
+# Bibliografía
+
+- Dobson, A. J., & Barnett, A. G. (2018). An introduction to generalized linear models. CRC press.
