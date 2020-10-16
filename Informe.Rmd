@@ -182,6 +182,8 @@ corrplot(cor(Datos), method="square", type="upper", order="hclust", tl.col="blac
 
 * El alcohol tiene una correlación negativa con la densidad. Esto es evidente por el hecho de que la densidad del agua es mayor que la densidad del alcohol.
 
+* Es posible observar que las variables pH y acidez fija presentan una correlación negativamente fuerte, lo cual nos indica que a mayor pH menor será la acidez, y viceversa, a menor pH mayor acidez. Lo cual se ve reflejado en la calidad final del vino.
+
 ### Variable indicadora: pHi 
 
 Se convierte la variable "pH" en una variable indicadora con tres niveles: "alto", "medio" y "bajo", esta nueva variable se denomina: "pHi". Para dicha transformación se realiza el siguiente procedimiento:
