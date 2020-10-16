@@ -117,7 +117,8 @@ p12 <- ggplot(Datos) + geom_histogram(aes(volatile.acidity), color="black", fill
 grid.arrange(p1, p2, p3, p4, p5, p6,p7, p8, p9, p10, p11, p12, ncol= 3)
 
 # Correlacion
-corrplot(cor(Datos), method = "number")
+corrplot(cor(Datos), method="number")
+corrplot(cor(Datos), method="square", type="upper", order="hclust", tl.col="black")
 
 # Variable indicadora: pHi
 summary(Datos[,"pH"])
