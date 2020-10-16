@@ -34,6 +34,8 @@ suppressMessages(library(plotly))
 suppressMessages(library(broom))
 suppressMessages(library(readr))
 suppressMessages(library(readxl))
+suppressMessages(library(MASS))
+suppressMessages(library(VGAM))
 ```
 
 # Actividad 1
@@ -223,37 +225,16 @@ G3 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
 G3
 ```
 
-## Modelo lineal generalizado (GLM)
-Los modelo lineal generalizado (GLM) es una generalización flexible de la regresión lineal ordinaria que permite variables de respuesta que tienen modelos de distribución de errores distintos de una distribución normal, fueron desarrollados por Nelder - Wedderburn (1972), permiten ampliar la gama de distribuciones de la variable respuesta a todas aquellas que pertenezcan a la familia exponencial de densidades.
-
-Al igual que la regresión lineal múltiple, permite cumplir con dos objetivos, determinar si existe relación lineal entre las $xj$ y $y$ y cuál es su magnitud.
-
-En esta sección, se ajustan dos modelos lineales generalizados, en primer lugar un modelo lineal generalizado usando como respuesta la variable "calidad" (quality) y como variables de predicción la variable "acidez fija" (fixed acidity) y en segundo lugar teniendo como variables predictoras las variables "acidez fija" (fixed acidity) y "pHi", tal como sigue:
-
-
-## Modelo sin variable indicadora pHi
-
-```{r warning=FALSE, include=T, paged.print=TRUE}
-Modelo1 <- glm(Datos$quality ~ Datos$fixed.acidity, data=Datos)
-
-```
-
-
-$$Calidad=5.15732+0.05754*Acidezfija $$
-<table> 
-| Coeficientes 	| Estimación 	| Error estándar 	| Valor t 	|   $Pr(>|t|)$ 	| Significancia 	|
-|------------	|----------	|--------------	|-------	|------------	|-------------	|
-| Intercepto   	|    5.15732 	|        0.09789 	|  52.684 	|      < 2e-16 	|      ***      	|
-| Acidez fija  	|    0.05754 	|        0.01152 	|   4.996 	|      6.5e-07 	|      ***      	|
-
 ## Modelo con variable indicadora pHi
 
+En esta sección, se procede a generar un modelo logístico con variable de respuesta ordinal, ya que la variable de respuesta "calidad" tiene una jerarquía, esto es, una puntuación entre 0 y 10, donde 0 representa una mala calidad y 10 una calidad de vino excelente.
+
 ```{r warning=FALSE, include=T, paged.print=TRUE}
-Modelo2 <- glm(Datos$quality ~ Datos$fixed.acidity + pHi, data=Datos)
+fit = vglm(quality ~ fixed.acidity + pHi, data = Datos, family = cumulative(parallel = TRUE))
+summary(fit)
+
 ```
 
-
-$$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio$$
 <table>
 |  Coeficientes 	| Estimación 	| Error Estándar 	| Valor - t 	| Pr(>\|t\|) 	| Significancia 	|
 |:-------------:	|:----------:	|:--------------:	|:---------:	|:----------:	|:-------------:	|
@@ -266,13 +247,8 @@ $$Calidad=5.03884+0.07194*Acidezfija-0.11957*pHiBajo+0.02348*pHiMedio$$
 | pHiBajo       	|    0.43078 	|        0.29710 	|     1.450 	|      0.147 	|               	|
 | pHiMedio      	|    0.01117 	|        0.25256 	|     0.044 	|      0.965 	|               	|
 
-De acuerdo a los resultados obtenidos y teniendo en cuenta que la interpretación de los valores p es similar a la del modelo lineal. Es posible evidenciar que la variable denominada "Acidez fija" es significativa en ambos modelos. Además, se encuentra positivamente relacionada con la variable de respuesta "Calidad", así la puntuación de la calidad del vino aumentaría $0.05754$ y $0.07194$ respectivamente por cada unidad que aumenta la acidez fija.
+## Conclusiones
 
-Finalmente, respecto al criterio de información empleado, esto es, el criterio de información de Akaike $(AIC)$, se tiene que mientras más pequeño sea el AIC, mejor se ajustará el modelo a los datos. De esta manera, el modelo que mejor se ajusta a los datos es el modelo con la variable indicadora pHi. 
+* Se obtienen $G-1$ interceptos, esto es $6-1=5$. Dado que, la variable de respuesta "Calidad" presenta 6 categorías.
 
-<table>
-| Sin pHi 	| Con pHi 	|
-|-------	|-------	|
-|  3834.5 	|   3833  	|
-
-
+* De acuerdo a los resultados obtenidos y teniendo en cuenta que la interpretación de los valores p es similar a la del modelo lineal. Es posible evidenciar que la variable denominada "Acidez fija" es significativa. Además, se encuentra negativamente relacionada con la variable de respuesta "Calidad", así la puntuación de la calidad del vino disminuiría $0.18017$ por cada unidad que aumenta la acidez fija.
