@@ -160,21 +160,11 @@ summary(Datos)
 
 * La variable calidad tiene solo 6 valores discretos.
 
-```{r warning=FALSE, include=F, paged.print=TRUE}
-G2 <- ggplot(Datos, aes(group = cut_width(quality, 1)))+ 
-  geom_boxplot(aes(quality, fixed.acidity), colour = "#417b5a")+
-  xlab("Calidad")+ylab("Acidez fija")
-```
-
-
-```{r fig.align="center", fig.height=3, fig.width=8, warning=FALSE, include=F}
-G2
-```
-
 
 ```{r fig.align="center", fig.height=4, fig.width=10, warning=FALSE, include=T}
 corrplot(cor(Datos), method="square", type="upper", order="hclust", tl.col="black")
 ```
+
 
 * La densidad tiene una correlación muy fuerte con la acidez fija.
 
@@ -221,14 +211,27 @@ pHi <- as.factor(pHi)
 ```
 
 ```{r warning=FALSE, include=F, paged.print=TRUE}
-G3 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
+G2 <- ggplot(data = Datos, aes(x=pHi, fill=pHi)) +
   geom_bar(position="dodge") + ylab("") + xlab(" ") +
   scale_fill_discrete(name = "Nivel pH:")
 ```
 
 ```{r fig.align="center", fig.height=2.5, fig.width=7, warning=FALSE, include=T}
+G2
+```
+
+Partiendo de lo anterior también se hace importante conocer el comportamiento de las dos variables de predicción, Acidez fija y pH, teniendo en cuenta las categorías (bajo, medio, alto) definidas a partir de los valores de pH para conocer cual es el comportamiento de estas, su posible relación y como podrían afectar la predicción de la calidad del vino en el modelo que se desea estudiar. 
+
+```{r warning=FALSE, include=F, paged.print=TRUE}
+G3 <- ggplot(Datos, aes(x=pH, y=fixed.acidity, color=pHi)) + geom_point(show.legend = T) + 
+  labs(color = "pHi",fill = " ") + xlab("pH") + ylab("Acidez fija")
+```
+
+```{r fig.align="center", fig.height=4, fig.width=10, warning=FALSE, include=T}
 G3
 ```
+
+Este figura presenta un comportamiento decreciente y se complementa con el gráfico de correlaciones presentado anteriormente en el cual era posible observar que las variables pH y acidez fija presentaban una correlación negativamente fuerte, lo cual nos indica que a mayor pH menor será la acidez. Esto podría verse reflejado en el modelo que se desea plantear y en si estas variables resultan ser o no significativas en la explicación de la calidad del vino.
 
 ### Modelo con variable indicadora pHi
 
