@@ -1,6 +1,6 @@
 ---
-title: 'Tarea 2: Modelos lineales generalizados y paramétricos'
-author: "Angie Rodriguez Duque & Cesar Saavedra Vanegas"
+title: 'Tarea 2: Modelos lineales generalizados y no paramétricos'
+author: "Angie Rodríguez Duque & César Saavedra Vanegas"
 date: "Octubre 22 de 2020"
 output:
   pdf_document: default
