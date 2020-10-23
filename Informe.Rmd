@@ -231,7 +231,7 @@ G3 <- ggplot(Datos, aes(x=pH, y=fixed.acidity, color=pHi)) + geom_point(show.leg
 G3
 ```
 
-Este figura presenta un comportamiento decreciente y se complementa con el gráfico de correlaciones presentado anteriormente en el cual era posible observar que las variables pH y acidez fija presentaban una correlación negativamente fuerte, lo cual nos indica que a mayor pH menor será la acidez. Esto podría verse reflejado en el modelo que se desea plantear y en si estas variables resultan ser o no significativas en la explicación de la calidad del vino.
+Esta figura presenta un comportamiento decreciente y se complementa con el gráfico de correlaciones presentado anteriormente en el cual era posible observar que las variables pH y acidez fija presentaban una correlación negativamente fuerte, lo cual nos indica que a mayor pH menor será la acidez. Esto podría verse reflejado en el modelo que se desea plantear y en si estas variables resultan ser o no significativas en la explicación de la calidad del vino.
 
 ### Modelo con variable indicadora pHi
 
